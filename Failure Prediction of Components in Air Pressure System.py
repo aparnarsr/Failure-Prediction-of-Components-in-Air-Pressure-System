@@ -190,21 +190,13 @@ for j in range(0,10):
         mean = 0
         stdv = 0
         for train_index,valid_index in Kfold.split(aps_train,aps_trainlabel):
-            print("1")
             feature_train_cv,feature_valid_cv = aps_train[train_index],aps_train[valid_index]
-            print("2")
             label_train_cv,label_valid_cv = aps_trainlabel[train_index],aps_trainlabel[valid_index]
-            print("3")
             model = SVC(C=cf,gamma = gf)
-            print("4")
             model.fit(feature_train_cv,label_train_cv)
-            print("5")
             label_valid_pred_cv = model.predict(feature_valid_cv)
-            print("6")
             acc_valid =  accuracy_score(label_valid_cv,label_valid_pred_cv)
-            print("7")
             mean= mean+acc_valid
-            print("8")
             stdv = stdv + math.pow(acc_valid,2)
             i=i+1
             print("inside")
